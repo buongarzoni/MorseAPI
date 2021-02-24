@@ -20,14 +20,16 @@ public abstract class TranslateStrategy {
     protected String translate(List<String> originalMessage, HashMap<String, String> dictionary, String separator){
 
         StringBuilder translatedMessage = new StringBuilder();
-        for (String string : originalMessage) {
+
+        originalMessage.forEach(string -> {
             if(dictionary.containsKey(string)){
                 translatedMessage.append(dictionary.get(string));
                 translatedMessage.append(separator);
             }else{
                 throw new InvalidInputException("No se reconoce el caracter ["+string+"]");
             }
-        }
-        return translatedMessage.toString();
+        });
+
+        return translatedMessage.toString().trim();
     }
 }

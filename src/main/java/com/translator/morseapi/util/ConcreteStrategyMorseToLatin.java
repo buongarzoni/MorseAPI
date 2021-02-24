@@ -1,5 +1,6 @@
 package com.translator.morseapi.util;
 
+import com.translator.morseapi.exceptions.InvalidInputException;
 import com.translator.morseapi.model.Alphabets;
 
 import java.util.ArrayList;
@@ -18,9 +19,17 @@ public class ConcreteStrategyMorseToLatin extends TranslateStrategy{
     }
 
     private String translate2Human(){
-        List<String> messageInMorse = new ArrayList<>(Arrays.asList(message.split(" ")));
-        Collections.replaceAll(messageInMorse,""," ");
+        if(isMorse()){
+            List<String> messageInMorse = new ArrayList<>(Arrays.asList(message.split(" ")));
+            Collections.replaceAll(messageInMorse,""," ");
 
-        return translate(messageInMorse, Alphabets.MORSE_TO_LATIN,"");
+            return translate(messageInMorse, Alphabets.MORSE_TO_LATIN,"");
+        }else{
+            throw new InvalidInputException("El código no es morse");
+        }
+    }
+
+    private boolean isMorse(){
+        return message.matches("^[.\\- ]+$");
     }
 }

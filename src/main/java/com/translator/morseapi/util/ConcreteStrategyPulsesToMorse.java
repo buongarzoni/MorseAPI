@@ -1,5 +1,7 @@
 package com.translator.morseapi.util;
 
+import com.translator.morseapi.exceptions.InvalidInputException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,15 +18,19 @@ public class ConcreteStrategyPulsesToMorse extends TranslateStrategy{
     }
 
     public String translate(){
-        return decodeBits2Morse(message);
+        return decodeBits2Morse();
     }
 
-    private String decodeBits2Morse(String message){
-        setAverageValues(message);
-        return decode(message);
+    private String decodeBits2Morse(){
+        if(isBinary()){
+            setAverageValues();
+            return decode();
+        }else{
+            throw new InvalidInputException("El código no es binario");
+        }
     }
 
-    private void setAverageValues(String message){
+    private void setAverageValues(){
         List<String> zeroList = new ArrayList<>(
                 Arrays.asList(
                         message.replaceAll("(1+)", " ").trim().split(" ")
@@ -44,7 +50,7 @@ public class ConcreteStrategyPulsesToMorse extends TranslateStrategy{
         averageOne=(Collections.max(oneList).length()+Collections.min(oneList).length())/2;
     }
 
-    private String decode(String message){
+    private String decode(){
 
         List<String> binarySplitedMessage = new ArrayList<>();
         Matcher m = Pattern.compile("(0+|1+)").matcher(message);
@@ -74,5 +80,9 @@ public class ConcreteStrategyPulsesToMorse extends TranslateStrategy{
         }
         messageInMorse.append(symbol.toString());
         return messageInMorse.toString();
+    }
+
+    private boolean isBinary(){
+        return message.matches("^[0-1]+$");
     }
 }
