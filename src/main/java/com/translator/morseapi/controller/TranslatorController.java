@@ -36,7 +36,7 @@ public class TranslatorController {
     }
 
     @ExceptionHandler({ Exception.class })
-    public ResponseEntity<?> handleInvalidDNAException(Exception e) {
+    public ResponseEntity<?> handleException(Exception e) {
         HashMap<String, String> response = new HashMap<>();
         response.put("code", HttpStatus.BAD_REQUEST.toString());
         response.put("response", e.getMessage());

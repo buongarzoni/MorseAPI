@@ -1,5 +1,6 @@
 package com.translator.morseapi.service;
 
+import com.translator.morseapi.exceptions.InvalidInputException;
 import com.translator.morseapi.model.Alphabets;
 import com.translator.morseapi.util.*;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class TranslatorService {
         if(isLatin(message)){
             context.setTranslateStrategy(new ConcreteStrategyLatinToMorse(message));
         }else{
-            throw new RuntimeException("Algún caracter es inválido");
+            throw new InvalidInputException("Algún caracter es inválido");
         }
         return context.executeTranslation();
     }
@@ -24,7 +25,7 @@ public class TranslatorService {
         if(isMorse(message)){
             context.setTranslateStrategy(new ConcreteStrategyMorseToLatin(message));
         }else{
-            throw new RuntimeException("El código no es morse");
+            throw new InvalidInputException("El código no es morse");
         }
         return context.executeTranslation();
     }
