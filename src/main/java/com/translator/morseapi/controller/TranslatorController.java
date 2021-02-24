@@ -16,19 +16,11 @@ import java.util.HashMap;
 public class TranslatorController {
     @Autowired
     private TranslatorService translatorService;
-    @PostMapping("/MorseToHuman")
+    @PostMapping("/translate")
     public ResponseEntity<?> postMorseToHuman(@RequestBody Message message) {
         HashMap<String, String> response = new HashMap<>();
-        response.put("code", HttpStatus.OK.toString());
-        response.put("response", translatorService.translate2Human(message.getText()));
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @PostMapping("/HumanToMorse")
-    public ResponseEntity<?> postHumanToMorse(@RequestBody Message message) {
-        HashMap<String, String> response = new HashMap<>();
-        response.put("code", HttpStatus.OK.toString());
-        response.put("response", translatorService.translate2Morse(message.getText()));
+        response.put("code", Integer.toString(HttpStatus.OK.value()));
+        response.put("response", translatorService.translate(message.getText()));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

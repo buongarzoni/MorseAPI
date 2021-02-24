@@ -7,20 +7,21 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Translator {
+public class ConcreteStrategyPulsesToMorse extends TranslateStrategy{
     private int averageZero=0;
     private int averageOne=0;
 
-    public String decodeBits2Morse(String message){
-        if(!isBinary(message)){
-            throw new RuntimeException("No es binario");
-        }
-        setAverageValues(message);
-        return decode(message);
+    public ConcreteStrategyPulsesToMorse(String message){
+        this.message = message;
     }
 
-    private boolean isBinary(String message){
-        return message.matches("^[0-1]+$");
+    public String translate(){
+        return decodeBits2Morse(message);
+    }
+
+    private String decodeBits2Morse(String message){
+        setAverageValues(message);
+        return decode(message);
     }
 
     private void setAverageValues(String message){
@@ -54,24 +55,24 @@ public class Translator {
         binarySplitedMessage.remove(0);
         binarySplitedMessage.remove(binarySplitedMessage.size()-1);
 
-        List<String> messageInMorse = new ArrayList<>();
-        StringBuilder code = new StringBuilder();
+        StringBuilder messageInMorse = new StringBuilder();
+        StringBuilder symbol = new StringBuilder();
         for (String element :binarySplitedMessage) {
             if(element.matches("^[0]+$")){
                 if(element.length()>= averageZero){
-                    messageInMorse.add(code.toString());
-                    code.delete(0, code.length());
-                    messageInMorse.add(" ");
+                    messageInMorse.append(symbol.toString());
+                    symbol.delete(0, symbol.length());
+                    messageInMorse.append(" ");
                 }
             }else{
-                if(element.length()< averageOne){
-                    code.append(".");
+                if(element.length()>= averageOne){
+                    symbol.append("-");
                 }else{
-                    code.append("-");
+                    symbol.append(".");
                 }
             }
         }
-        messageInMorse.add(code.toString());
+        messageInMorse.append(symbol.toString());
         return messageInMorse.toString();
     }
 }

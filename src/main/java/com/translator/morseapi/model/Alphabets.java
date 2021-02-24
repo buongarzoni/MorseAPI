@@ -2,9 +2,9 @@ package com.translator.morseapi.model;
 
 import java.util.HashMap;
 
-public class MorseCode {
+public class Alphabets {
 
-    public static final HashMap<String, String> TRANSLATION_TABLE_TO_MORSE = new HashMap<String, String>() {{
+    public static final HashMap<String, String> LATIN_TO_MORSE = new HashMap<String, String>() {{
         put("A", ".-");
         put("B", "-...");
         put("C", "-.-.");
@@ -45,7 +45,7 @@ public class MorseCode {
         put(" ", " ");
     }};
 
-    public static final HashMap<String, String> TRANSLATION_TABLE_TO_HUMAN = new HashMap<String, String>() {{
+    public static final HashMap<String, String> MORSE_TO_LATIN = new HashMap<String, String>() {{
         put(".-", "A");
         put("-...", "B");
         put("-.-.", "C");
