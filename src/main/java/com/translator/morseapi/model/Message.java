@@ -2,7 +2,6 @@ package com.translator.morseapi.model;
 
 public class Message {
 
-
     private String text;
 
     public Message() {
