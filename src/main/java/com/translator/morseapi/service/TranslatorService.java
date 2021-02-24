@@ -11,18 +11,24 @@ public class TranslatorService {
 
     Context context = new Context();
 
-    public String translate(String message){
-        if(isBinary(message)){
-            context.setTranslateStrategy(new ConcreteStrategyPulsesToMorse(message));
-        }else if(isMorse(message)){
-            context.setTranslateStrategy(new ConcreteStrategyMorseToLatin(message));
-        }else if(isLatin(message)){
+    public String translate2Morse(String message){
+        if(isLatin(message)){
             context.setTranslateStrategy(new ConcreteStrategyLatinToMorse(message));
         }else{
-            throw new RuntimeException("No se reconoce el lenguaje");
+            throw new RuntimeException("Algún caracter es inválido");
         }
         return context.executeTranslation();
     }
+
+    public String translate2Human(String message){
+        if(isMorse(message)){
+            context.setTranslateStrategy(new ConcreteStrategyMorseToLatin(message));
+        }else{
+            throw new RuntimeException("El código no es morse");
+        }
+        return context.executeTranslation();
+    }
+
 
     private boolean isBinary(String message){
         return message.matches("^[0-1]+$");

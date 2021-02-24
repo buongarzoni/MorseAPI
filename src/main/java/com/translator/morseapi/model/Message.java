@@ -1,7 +1,11 @@
 package com.translator.morseapi.model;
 
+
+import io.swagger.annotations.ApiModelProperty;
+
 public class Message {
 
+    @ApiModelProperty(dataType = "String",example = "Hola MeLi",required = true)
     private String text;
 
     public Message() {
