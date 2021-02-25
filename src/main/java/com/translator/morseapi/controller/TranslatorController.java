@@ -22,14 +22,9 @@ public class TranslatorController {
     @Autowired
     private TranslatorService translatorService;
 
-    @Value("${JAVA_HOME}")
-    private String algo;
-
     @PostMapping("/2Morse")
     public ResponseEntity<?> postHumanToMorse(@RequestBody Message message) {
         HashMap<String, String> response = new HashMap<>();
-        System.out.println("clasldal"+ algo);
-
         response.put("code", Integer.toString(HttpStatus.OK.value()));
         response.put("response", translatorService.translate2Morse(message.getText()));
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -46,7 +41,7 @@ public class TranslatorController {
     @ExceptionHandler({ InvalidCharacterException.class , InvalidInputException.class})
     public ResponseEntity<?> handleException(RuntimeException e) {
         HashMap<String, String> response = new HashMap<>();
-        response.put("code", HttpStatus.BAD_REQUEST.toString());
+        response.put("code", Integer.toString(HttpStatus.BAD_REQUEST.value()));
         response.put("response", e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }

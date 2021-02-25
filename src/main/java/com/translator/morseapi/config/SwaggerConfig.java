@@ -31,12 +31,11 @@ public class SwaggerConfig {
     private ApiInfo getApiInfo() {
         return new ApiInfo(
                 "MeLi Challenge API",
-                "Servicio para traducir",
+                "API para traducir texto con caracteres latinos a morse (cada caracter en morse es separado con un ' ' y cada palabra con dos ' ')",
                 "1.0",
-                "http://codmind.com/terms",
-                new Contact("Christian Buon", "https://codmind.com", "christian.buon@codmind.com"),
-                "LICENSE",
-                "LICENSE URL",
+                "",
+                new Contact("Christian Ricardo Buongarzoni", "https://www.linkedin.com/in/christian-r-buongarzoni/", "christian.buongarzoni@gmail.com"),
+                null, null,
                 Collections.emptyList()
         );
     }
