@@ -88,3 +88,6 @@ Devolverá:
 |"Q",| "--.-"  |"8",| "---.." |
 |"R",| ".-."   |"9",| "----." |
 |".",| ".-.-.-"| " " | " " |
+
+# Links
+ * Swagger: https://api-meli-translator.herokuapp.com/swagger-ui.html
