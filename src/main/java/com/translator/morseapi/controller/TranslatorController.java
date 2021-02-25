@@ -21,6 +21,7 @@ import java.util.HashMap;
 public class TranslatorController {
     @Autowired
     private TranslatorService translatorService;
+
     @PostMapping("/2Morse")
     public ResponseEntity<?> postHumanToMorse(@RequestBody Message message) {
         HashMap<String, String> response = new HashMap<>();
@@ -45,19 +46,12 @@ public class TranslatorController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({ InvalidCharacterException.class })
-    public ResponseEntity<?> handleException(InvalidCharacterException e) {
+    @ExceptionHandler({ InvalidCharacterException.class , InvalidInputException.class})
+    public ResponseEntity<?> handleException(RuntimeException e) {
         HashMap<String, String> response = new HashMap<>();
         response.put("code", HttpStatus.BAD_REQUEST.toString());
         response.put("response", e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({ InvalidInputException.class })
-    public ResponseEntity<?> handleException(InvalidInputException e) {
-        HashMap<String, String> response = new HashMap<>();
-        response.put("code", HttpStatus.BAD_REQUEST.toString());
-        response.put("response", e.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
 }
