@@ -2,6 +2,9 @@ package com.translator.morseapi.controller;
 
 import com.translator.morseapi.domain.model.Message;
 import com.translator.morseapi.domain.service.TranslatorService;
+import com.translator.morseapi.exceptions.ErrorInJSONFileException;
+import com.translator.morseapi.exceptions.InvalidCharacterException;
+import com.translator.morseapi.exceptions.InvalidInputException;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,8 +37,24 @@ public class TranslatorController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @ExceptionHandler({ Exception.class })
-    public ResponseEntity<?> handleException(Exception e) {
+    @ExceptionHandler({ ErrorInJSONFileException.class })
+    public ResponseEntity<?> handleException(ErrorInJSONFileException e) {
+        HashMap<String, String> response = new HashMap<>();
+        response.put("code", HttpStatus.INTERNAL_SERVER_ERROR.toString());
+        response.put("response", e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({ InvalidCharacterException.class })
+    public ResponseEntity<?> handleException(InvalidCharacterException e) {
+        HashMap<String, String> response = new HashMap<>();
+        response.put("code", HttpStatus.BAD_REQUEST.toString());
+        response.put("response", e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({ InvalidInputException.class })
+    public ResponseEntity<?> handleException(InvalidInputException e) {
         HashMap<String, String> response = new HashMap<>();
         response.put("code", HttpStatus.BAD_REQUEST.toString());
         response.put("response", e.getMessage());

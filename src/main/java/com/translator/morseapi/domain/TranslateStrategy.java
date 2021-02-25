@@ -1,6 +1,6 @@
 package com.translator.morseapi.domain;
 
-import com.translator.morseapi.exceptions.InvalidInputException;
+import com.translator.morseapi.exceptions.InvalidCharacterException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,7 @@ public abstract class TranslateStrategy {
                 translatedMessage.append(dictionary.get(string));
                 translatedMessage.append(separator);
             }else{
-                throw new InvalidInputException("No se reconoce el caracter ["+string+"]");
+                throw new InvalidCharacterException("No se reconoce el caracter ["+string+"]");
             }
         });
 
