@@ -1,7 +1,7 @@
-package com.translator.morseapi.util;
+package com.translator.morseapi.domain;
 
 import com.translator.morseapi.exceptions.InvalidInputException;
-import com.translator.morseapi.model.Alphabets;
+import com.translator.morseapi.domain.model.Alphabets;
 
 import java.util.ArrayList;
 import java.util.Arrays;

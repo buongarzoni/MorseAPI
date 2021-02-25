@@ -1,7 +1,7 @@
 package com.translator.morseapi;
 
 import com.translator.morseapi.exceptions.InvalidInputException;
-import com.translator.morseapi.service.TranslatorService;
+import com.translator.morseapi.domain.service.TranslatorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,12 +1,10 @@
-package com.translator.morseapi.service;
+package com.translator.morseapi.domain.service;
 
-import com.translator.morseapi.exceptions.InvalidInputException;
-import com.translator.morseapi.model.Alphabets;
-import com.translator.morseapi.model.ParseJSONFromFile;
-import com.translator.morseapi.util.*;
+import com.translator.morseapi.domain.ConcreteStrategyLatinToMorse;
+import com.translator.morseapi.domain.ConcreteStrategyMorseToLatin;
+import com.translator.morseapi.domain.ConcreteStrategyPulsesToMorse;
+import com.translator.morseapi.domain.Context;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class TranslatorService {

@@ -1,4 +1,4 @@
-package com.translator.morseapi.util;
+package com.translator.morseapi.domain;
 
 import com.translator.morseapi.exceptions.InvalidInputException;
 

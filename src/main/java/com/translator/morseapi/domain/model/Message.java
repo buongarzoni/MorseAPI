@@ -1,4 +1,4 @@
-package com.translator.morseapi.model;
+package com.translator.morseapi.domain.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
