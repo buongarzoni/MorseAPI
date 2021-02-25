@@ -1,7 +1,7 @@
 package com.translator.morseapi.domain;
 
 import com.translator.morseapi.exceptions.InvalidInputException;
-import com.translator.morseapi.domain.model.Alphabets;
+import com.translator.morseapi.domain.model.Alphabet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,8 +24,7 @@ public class ConcreteStrategyLatinToMorse extends TranslateStrategy {
         if(isLatin()){
             List<String> messageInLatin = new ArrayList<>(Arrays.asList(message.split("")));
             Collections.replaceAll(messageInLatin,""," ");
-
-            return translate(messageInLatin, Alphabets.LATIN_TO_MORSE," ");
+            return translate(messageInLatin, Alphabet.LATIN_TO_MORSE," ");
         }else{
             throw new InvalidInputException("Algún caracter es inválido");
         }

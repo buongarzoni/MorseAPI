@@ -18,7 +18,6 @@ public abstract class TranslateStrategy {
     public abstract String translate();
 
     protected String translate(List<String> originalMessage, HashMap<String, String> dictionary, String separator){
-
         StringBuilder translatedMessage = new StringBuilder();
 
         originalMessage.forEach(string -> {
