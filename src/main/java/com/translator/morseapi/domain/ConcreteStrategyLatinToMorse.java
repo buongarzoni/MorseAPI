@@ -24,7 +24,7 @@ public class ConcreteStrategyLatinToMorse extends TranslateStrategy {
         if(isLatin()){
             List<String> messageInLatin = new ArrayList<>(Arrays.asList(message.split("")));
             Collections.replaceAll(messageInLatin,""," ");
-            return translate(messageInLatin, Alphabet.LATIN_TO_MORSE," ");
+            return translate(messageInLatin, Alphabet.LATIN_TO_MORSE," ").replaceAll("[ ]{3}", "  ");
         }else{
             throw new InvalidInputException("Algún caracter es inválido");
         }

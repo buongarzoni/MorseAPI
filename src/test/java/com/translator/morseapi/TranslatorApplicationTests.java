@@ -47,7 +47,7 @@ class TranslatorApplicationTests {
 	@Test
 	void validate_latin_to_morse_alphabet() {
 		TranslatorService translatorService = new TranslatorService();
-		assertEquals(".... --- .-.. .-   -- . .-.. ..",translatorService.translate2Morse("HOLA MELI"));
+		assertEquals(".... --- .-.. .-  -- . .-.. ..",translatorService.translate2Morse("HOLA MELI"));
 	}
 
 	@Test
