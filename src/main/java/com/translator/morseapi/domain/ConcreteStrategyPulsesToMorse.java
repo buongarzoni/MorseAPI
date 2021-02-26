@@ -52,12 +52,7 @@ public class ConcreteStrategyPulsesToMorse extends TranslateStrategy{
 
     private String decode(){
 
-        List<String> binarySplitedMessage = new ArrayList<>();
-        Matcher m = Pattern.compile("(0+|1+)").matcher(message);
-
-        while(m.find()) {
-            binarySplitedMessage.add(m.group(1));
-        }
+        List<String> binarySplitedMessage = new ArrayList<>(Arrays.asList(message.split("(?<=0(?!0)|1(?!1))")));
         binarySplitedMessage.remove(0);
         binarySplitedMessage.remove(binarySplitedMessage.size()-1);
 
